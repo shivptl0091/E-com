@@ -7,6 +7,9 @@ class Database
     private $db_password = "";
     private $host = "localhost";
 
+
+
+    
     private $conn;
 
     public function __construct($db_name)

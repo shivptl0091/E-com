@@ -36,7 +36,7 @@ if (isset($_SESSION['data'])) {
 
 <body>
     <div class="box">
-        <form class="p-4"  method="POST" action="http://localhost/E-com/features/login/login_reqest.php">
+        <form class="p-4"  method="POST" action="http://localhost/E-com/Admin_Page/features/login/login_reqest.php">
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">User Name</label>
                 <input type="text" class="form-control" name="username">

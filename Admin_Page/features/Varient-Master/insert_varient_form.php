@@ -86,7 +86,7 @@ $product_data = $db->getdata("product");
         formdata.append("productname", productname)
 
         var response = await fetch(
-          "http://localhost/E-com/features/Varient-Master/get_size_colors.php", {
+          "http://localhost/E-com/Admin_Page/features/Varient-Master/get_size_colors.php", {
             method: "POST",
             body: formdata,
           }

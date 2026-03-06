@@ -109,7 +109,7 @@ if (isset($_GET['id'])) {
         formdata.append("country_name", country_name);
 
         var response = await fetch(
-          "http://localhost/E-com/features/city/get_state.php", {
+          "http://localhost/E-com/Admin_Page/features/city/get_state.php", {
             method: "POST",
             body: formdata,
           }

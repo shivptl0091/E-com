@@ -1,44 +1,104 @@
 <?php
 
 require_once "./commen/header.php";
-?>
-    <!-- Breadcrumb -->
-    <div class="container mx-auto px-4 py-6">
-        <div class="breadcrumb">
-            <a href="index.php">Home</a>
-            <span>→</span>
-            <span style="color: var(--text-light); font-weight: 600;">Shop</span>
-        </div>
-    </div>
 
-    <!-- Main Shop Section -->
-    <section class="container mx-auto px-4 pb-16">
-        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+$product_where = "";
+
+if (isset($_GET['category'])) {
+    $category = $_GET['category'];
+    $product_where = " WHERE categoryname IN (" . implode(',', $category) . ")";
+}
+$brand_where = "";
+
+if (isset($_GET['brand'])) {
+    $brand = $_GET['brand'];
+    $brand_where = " WHERE Brandname IN (" . implode(',', $brand) . ")";
+}
+
+
+
+?>
+<div class="text-end me-5 mt-5 my-5">
+    <a href="./shop.php" class="btn-primary py-2 px-4">Refresh</a>
+</div>
+<!-- Breadcrumb -->
+<div class="container mx-auto px-4 py-6">
+    <div class="breadcrumb">
+        <a href="index.php">Home</a>
+        <span>→</span>
+        <span style="color: var(--text-light); font-weight: 600;">Shop</span>
+    </div>
+</div>
+
+<!-- Main Shop Section -->
+<section class="container mx-auto px-4 pb-16">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+        <!-- Desktop Sidebar -->
+        <form method="GET" action="shop.php" class="hidden lg:block sidebar">
+            <div class="filter-section">
+                <h3 class="font-bold text-lg mb-4">Categories</h3>
+                <div class="space-y-2">
+                    <?php
+                    $where = "";
+                    if (isset($_GET['search'])) {
+                        $search = trim($_GET['search']);
+                        $where = "where `categoryname` LIKE '%$search%' OR `price` LIKE '%$search%' ";
+                    }
+
+                    $categories_data =  $db->getdata("categories", 0, 0, $where);
+                    foreach ($categories_data as $categories) {
+
+                        $checked = "";
+
+                        if (isset($_GET['category'])) {
+                            $category = $_GET['category'];
+
+                            if (in_array($categories['id'], $category)) {
+
+                                $checked = "checked";
+                            }
+                        }
+
+                        echo ' <label class="checkbox-custom">
+                        <input type="checkbox" name="category[]" value="' . $categories['id'] . '"  onchange="filterProducts()" '.$checked .'>
+                        <span> ' . $categories['categoryname'] . '<span style="color: var(--text-gray)"></span></span>
+                    </label>';
+                    }
+                    ?>
+                </div>
+            </div>
+
             <!-- Desktop Sidebar -->
-            <aside class="hidden lg:block sidebar">
+            <form method="GET" action="shop.php" class="hidden lg:block sidebar">
                 <div class="filter-section">
-                    <h3 class="font-bold text-lg mb-4">Categories</h3>
+                    <h3 class="font-bold text-lg mb-4">Brandname</h3>
                     <div class="space-y-2">
-                        <label class="checkbox-custom">
-                            <input type="checkbox" name="category" value="all" checked onchange="filterProducts()">
-                            <span>All Products <span style="color: var(--text-gray)">(24)</span></span>
-                        </label>
-                        <label class="checkbox-custom">
-                            <input type="checkbox" name="category" value="footwear" onchange="filterProducts()">
-                            <span>Footwear <span style="color: var(--text-gray)">(8)</span></span>
-                        </label>
-                        <label class="checkbox-custom">
-                            <input type="checkbox" name="category" value="clothing" onchange="filterProducts()">
-                            <span>Clothing <span style="color: var(--text-gray)">(10)</span></span>
-                        </label>
-                        <label class="checkbox-custom">
-                            <input type="checkbox" name="category" value="accessories" onchange="filterProducts()">
-                            <span>Accessories <span style="color: var(--text-gray)">(5)</span></span>
-                        </label>
-                        <label class="checkbox-custom">
-                            <input type="checkbox" name="category" value="electronics" onchange="filterProducts()">
-                            <span>Electronics <span style="color: var(--text-gray)">(1)</span></span>
-                        </label>
+                        <?php
+                        $where = "";
+                        if (isset($_GET['search'])) {
+                            $search = trim($_GET['search']);
+                            $where = "where `Brandname` LIKE '%$search%' ` ";
+                        }
+
+                        $brand_data =  $db->getdata("brand", 0, 0, $brand_where);
+                        foreach ($brand_data as $brand) {
+                             $checked = "";
+
+                        if (isset($_GET['brand'])) {
+                            $brand = $_GET['brand'];
+
+                            if (in_array($brand['id'], $brand)) {
+
+                                $checked = "checked";
+                            }
+                        }
+
+                            echo ' <label class="checkbox-custom">
+                        <input type="checkbox" name="brand[]" value="' . $brand['id'] . '"  onchange="filterProducts()"'.$checked .'>
+                        <span> ' . $brand['Brandname'] . '<span style="color: var(--text-gray)"></span></span>
+                    </label>';
+                        }
+                        ?>
                     </div>
                 </div>
 
@@ -54,32 +114,32 @@ require_once "./commen/header.php";
                     </div>
                 </div>
 
-                <div class="filter-section">
-                    <h3 class="font-bold text-lg mb-4">Rating</h3>
-                    <div class="space-y-2">
-                        <label class="checkbox-custom">
-                            <input type="checkbox" name="rating" value="5" onchange="filterProducts()">
-                            <span class="flex items-center gap-2">
-                                <span class="rating">★★★★★</span>
-                                <span style="color: var(--text-gray)">(5 stars)</span>
-                            </span>
-                        </label>
-                        <label class="checkbox-custom">
-                            <input type="checkbox" name="rating" value="4" onchange="filterProducts()">
-                            <span class="flex items-center gap-2">
-                                <span class="rating">★★★★☆</span>
-                                <span style="color: var(--text-gray)">(4+ stars)</span>
-                            </span>
-                        </label>
-                        <label class="checkbox-custom">
-                            <input type="checkbox" name="rating" value="3" onchange="filterProducts()">
-                            <span class="flex items-center gap-2">
-                                <span class="rating">★★★☆☆</span>
-                                <span style="color: var(--text-gray)">(3+ stars)</span>
-                            </span>
-                        </label>
-                    </div>
+                <!-- <div class="filter-section">
+                <h3 class="font-bold text-lg mb-4">Rating</h3>
+                <div class="space-y-2">
+                    <label class="checkbox-custom">
+                        <input type="checkbox" name="rating" value="5" onchange="filterProducts()">
+                        <span class="flex items-center gap-2">
+                            <span class="rating">★★★★★</span>
+                            <span style="color: var(--text-gray)">(5 stars)</span>
+                        </span>
+                    </label>
+                    <label class="checkbox-custom">
+                        <input type="checkbox" name="rating" value="4" onchange="filterProducts()">
+                        <span class="flex items-center gap-2">
+                            <span class="rating">★★★★☆</span>
+                            <span style="color: var(--text-gray)">(4+ stars)</span>
+                        </span>
+                    </label>
+                    <label class="checkbox-custom">
+                        <input type="checkbox" name="rating" value="3" onchange="filterProducts()">
+                        <span class="flex items-center gap-2">
+                            <span class="rating">★★★☆☆</span>
+                            <span style="color: var(--text-gray)">(3+ stars)</span>
+                        </span>
+                    </label>
                 </div>
+            </div> -->
 
                 <div class="filter-section">
                     <h3 class="font-bold text-lg mb-4">Availability</h3>
@@ -88,15 +148,16 @@ require_once "./commen/header.php";
                             <input type="checkbox" name="availability" value="in-stock" onchange="filterProducts()">
                             <span>In Stock <span style="color: var(--text-gray)">(20)</span></span>
                         </label>
-                        <label class="checkbox-custom">
-                            <input type="checkbox" name="availability" value="on-sale" onchange="filterProducts()">
-                            <span>On Sale <span style="color: var(--text-gray)">(6)</span></span>
-                        </label>
+                        <!-- <label class="checkbox-custom">
+                        <input type="checkbox" name="availability" value="on-sale" onchange="filterProducts()">
+                        <span>On Sale <span style="color: var(--text-gray)">(6)</span></span>
+                    </label> -->
                     </div>
                 </div>
 
                 <button class="btn-primary w-full" onclick="resetFilters()">Reset Filters</button>
-            </aside>
+                <button class="btn-primary w-full mt-2" type="submit">Applly Filters</button>
+            </form>
 
             <!-- Products Section -->
             <div class="lg:col-span-3">
@@ -143,19 +204,27 @@ require_once "./commen/header.php";
 
                 <!-- Products Grid -->
                 <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
-                    <!-- Product 1 -->
-                    <div class="product-card rounded-xl overflow-hidden shadow-lg" data-category="footwear" data-price="89.99" data-rating="5" data-availability="in-stock">
+                    <?php
+                    $where = "";
+                    if (isset($_GET['search'])) {
+                        $search = trim($_GET['search']);
+                        $where  = " WHERE `productname` LIKE '%$search%'";
+                    }
+                    $product_data =  $db->getdata("product", 0, 0, $product_where);
+
+                    foreach ($product_data as $product) {
+                        echo '  <div class="product-card rounded-xl overflow-hidden shadow-lg" data-category="footwear" data-price="89.99" data-rating="5" data-availability="in-stock">
                         <div class="relative">
                             <div class="product-carousel">
                                 <div class="product-carousel-track" id="productCarousel1">
                                     <div class="product-carousel-slide">
-                                        <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=400&h=400&fit=crop" alt="Product 1">
+                                       <img src="http://localhost/E-com/Admin_Page/photo/' . $product['photo'] . '" alt="' . $product['photo'] . '">
                                     </div>
                                     <div class="product-carousel-slide">
-                                        <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400&h=400&fit=crop" alt="Product 1">
+                                        <img src="http://localhost/E-com/Admin_Page/photo/' . $product['photo'] . '" alt="Product 1">
                                     </div>
                                     <div class="product-carousel-slide">
-                                        <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=400&fit=crop" alt="Product 1">
+                                        <img src="http://localhost/E-com/Admin_Page/photo/' . $product['photo'] . '" alt="Product 1">
                                     </div>
                                 </div>
                                 <div class="product-carousel-indicators">
@@ -166,8 +235,9 @@ require_once "./commen/header.php";
                             </div>
                             <span class="badge badge-new absolute top-4 left-4 z-10">New</span>
                         </div>
+                        
                         <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">Classic White Sneakers</h3>
+                            <h3 class="text-xl font-bold mb-2">' . $product['productname'] . '</h3>
                             <div class="flex items-center gap-2 mb-3">
                                 <div class="rating flex">
                                     <span>★★★★★</span>
@@ -176,13 +246,19 @@ require_once "./commen/header.php";
                             </div>
                             <div class="flex items-center justify-between">
                                 <div>
-                                    <span class="text-2xl font-bold" style="color: var(--primary-blue)">$89.99</span>
+                                    <span class="text-2xl font-bold" style="color: var(--primary-blue)">₹' . $product['price'] . '</span>
                                 </div>
                                 <button class="btn-primary py-2 px-4" onclick="addToCart(1)">Add to Cart</button>
                             </div>
                         </div>
-                    </div>
+                    </div>';
+                    }
+                    // echo "<pre>";
+                    // print_r($product_data);
+                    ?>
 
+                    <?php /*
+                  <!-- Product 1 -->
                     <!-- Product 2 -->
                     <div class="product-card rounded-xl overflow-hidden shadow-lg" data-category="clothing" data-price="90.99" data-rating="4" data-availability="on-sale">
                         <div class="relative">
@@ -503,21 +579,23 @@ require_once "./commen/header.php";
                             </div>
                         </div>
                     </div>
+
+                 */   ?>
                 </div>
 
                 <!-- Pagination -->
                 <div class="mt-12 flex justify-center items-center gap-2">
-                    <button class="px-4 py-2 rounded-lg border-2 font-semibold transition hover:bg-blue-600 hover:text-white hover:border-blue-600" style="border-color: var(--primary-blue); color: var(--primary-blue)">Previous</button>
-                    <button class="px-4 py-2 rounded-lg font-semibold text-white" style="background: var(--primary-blue)">1</button>
-                    <button class="px-4 py-2 rounded-lg border-2 font-semibold transition hover:bg-blue-600 hover:text-white hover:border-blue-600" style="border-color: var(--primary-blue); color: var(--primary-blue)">2</button>
-                    <button class="px-4 py-2 rounded-lg border-2 font-semibold transition hover:bg-blue-600 hover:text-white hover:border-blue-600" style="border-color: var(--primary-blue); color: var(--primary-blue)">3</button>
-                    <button class="px-4 py-2 rounded-lg border-2 font-semibold transition hover:bg-blue-600 hover:text-white hover:border-blue-600" style="border-color: var(--primary-blue); color: var(--primary-blue)">Next</button>
-                </div>
+                    <!--   <button class="px-4 py-2 rounded-lg border-2 font-semibold transition hover:bg-blue-600 hover:text-white hover:border-blue-600" style="border-color: var(--primary-blue); color: var(--primary-blue)">Previous</button>
+                <button class="px-4 py-2 rounded-lg font-semibold text-white" style="background: var(--primary-blue)">1</button>
+                <button class="px-4 py-2 rounded-lg border-2 font-semibold transition hover:bg-blue-600 hover:text-white hover:border-blue-600" style="border-color: var(--primary-blue); color: var(--primary-blue)">2</button>
+                <button class="px-4 py-2 rounded-lg border-2 font-semibold transition hover:bg-blue-600 hover:text-white hover:border-blue-600" style="border-color: var(--primary-blue); color: var(--primary-blue)">3</button>
+                <button class="px-4 py-2 rounded-lg border-2 font-semibold transition hover:bg-blue-600 hover:text-white hover:border-blue-600" style="border-color: var(--primary-blue); color: var(--primary-blue)">Next</button>
             </div>
         </div>
-    </section>
+    </div> -->
+</section>
 
-    <!-- Footer -->
-   <?php
-   require_once "./commen/footer.php";
-   ?>
+<!-- Footer -->
+<?php
+require_once "./commen/footer.php";
+?>

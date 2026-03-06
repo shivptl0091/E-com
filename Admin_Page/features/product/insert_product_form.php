@@ -2,6 +2,7 @@
 <?php  require_once "../../database.php";
   $db = new Database("ecoms");
   $Brand_data = $db->getdata("Brand");
+  $categories_data = $db->getdata("categories");
 
 
 
@@ -47,7 +48,7 @@
 <body>
   <form class="box p-5" action="insert_product_service.php" method="POST" enctype="multipart/form-data">
   <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Product Nmae</label>
+      <label for="exampleInputEmail1" class="form-label">Product Name</label>
       <input type="text" name="productname" class="form-control" aria-describedby="emailHelp">
     </div>  
   <!-- <div class="mb-3">
@@ -70,10 +71,26 @@
                           ?>
                         </select>
                     </div>
-    <div class="mb-3">
+       <div class="mb-3">
+                        <label>Category Name</label>
+                        <select class="form-control" name="categoryname">
+
+                          <?php
+
+                            foreach ( $categories_data as  $categories_row) {
+
+
+                              echo '<option value="'. $categories_row['id'].'">'.$categories_row['categoryname'].'</option>';
+                            }
+
+                                                      
+                          ?>
+                        </select>
+                    </div>
+    <!-- <div class="mb-3">
       <label for="exampleInputPassword1" class="form-label">Category Name</label>
       <input type="text" name="categoryname" class="form-control">
-    </div>
+    </div> -->
     <div class="mb-3">
       <label for="exampleInputPassword1" class="form-label">Price</label>
       <input type="number" name="price" class="form-control">

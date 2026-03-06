@@ -46,7 +46,7 @@ if (isset($_GET['id'])) {
     <input type="hidden" value="<?php echo $row['id']; ?>" name="id">
 
     <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Brand Nmae</label>
+      <label for="exampleInputEmail1" class="form-label">Brand Name</label>
       <input type="text" name="Brandname" class="form-control" aria-describedby="emailHelp" value="<?php echo $row['Brandname']; ?>">
     </div>
     <div class="mb-3">

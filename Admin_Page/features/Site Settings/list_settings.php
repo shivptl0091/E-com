@@ -16,26 +16,17 @@ $where = "";
 if (isset($_GET['search'])) {
   $search = $_GET['search'];
   if ($search != "") {
-    $where = "WHERE product.id LIKE '%$search%' OR productname LIKE '%$search%' OR Brandname LIKE '%$search%' OR categoryname LIKE '%$search%' OR price LIKE '%$search%' OR description LIKE '%$search%' OR long_description LIKE '%$search%' ";
+    $where = "WHERE id LIKE '%$search%' OR
+     banner_title LIKE '%$search%' OR
+      banner_subtitle LIKE '%$search%'OR
+       banner_button_text LIKE '%$search%'OR
+        mob LIKE '%$search%'OR
+         email LIKE '%$search%' OR
+         address LIKE '%$search%' ";
   }
 }
+$data = $db->getdata('site_settings', $limit, $offset, $where);
 
-$query = "SELECT product.id,product.stock,product.photo,product.productname,Brand.Brandname AS brandname,product.categoryname,product.price,product.description,product.long_description
-FROM product
- JOIN Brand ON product.brandname = Brand.id
- 
-$where
-LIMIT $offset,$limit
-";
-
-
-// $data=$db->get_data_from_query($query);
-
-
-$data = $db->getdata('product', $limit, $offset, $where);
-
-// echo"<pre>";
-// print_r($data);
 ?>
 
 
@@ -44,19 +35,19 @@ $data = $db->getdata('product', $limit, $offset, $where);
 <div class="container-fluid">
 
   <!-- Page2 Heading -->
-  <h1 class="h3 mb-4 text-gray-800">Products page </h1>
- 
+  <h1 class="h3 mb-4 text-gray-800">Settings Page</h1>
+
 </div>
 <!-- /.container-fluid -->
 
 
 
 <div class="d-flex justify-content-end">
-  <form class="d-flex" role="search" action="list_product.php">
+  <form class="d-flex" role="search" action="list_settings.php">
     <input class="form-control me-2 box" name="search" type="search" placeholder="Search" aria-label="Search" />
     <button class="btn btn-outline-primary me-2 Search" type="submit">Search</button>
   </form>
-  <a href="./insert_product_form.php" class="btn btn-primary m-2">ADD NEW</a>
+  <a href="./insert_site_settings_form.php" class="btn btn-primary m-2">ADD NEW</a>
   <!-- <a href="./blank2.php" class="btn btn-primary m-2">Reset</a> -->
   <!-- <a href="./login.php" class="btn btn-primary m-2">LOG OUT</a> -->
 </div>
@@ -66,13 +57,12 @@ $data = $db->getdata('product', $limit, $offset, $where);
     <thead>
       <th>ID</th>
       <th>Logo</th>
-      <th>Product Name</th>
-      <th>Stoke</th>
-      <th>Brand Name</th>
-      <th>Category Name</th>
-      <th>Price</th>
-      <th>Description</th>
-      <th>long description</th>
+      <th>Banner Title</th>
+      <th>Banner Subtitle</th>
+      <th>Banner Button Text</th>
+      <th>Mobile Number</th>
+      <th>Email</th>
+      <th>Address</th>
       <th>Action</th>
     </thead>
     <tbody>
@@ -81,15 +71,14 @@ $data = $db->getdata('product', $limit, $offset, $where);
       foreach ($data as $row) {
         echo "<tr>";
         echo "<td>" . $i . "</td>";
-        echo "<td> <img class='profile-img' src='../../photo/" . $row['photo'] . "' alt='image not found'' > </td>";
-        echo "<td>" . $row['productname'] . "</td>";
-        echo "<td>" . $row['stock'] . "</td>";
-        echo "<td>" . $row['brandname'] . "</td>";
-        echo "<td>" . $row['categoryname'] . "</td>";
-        echo "<td>" . $row['price'] . "</td>";
-        echo "<td>" . $row['description'] . "</td>";
-        echo "<td>" . $row['long_description'] . "</td>";
-        echo " <td><a href='update_product_form.php?id=" . $row['id'] . "' class='btn btn-success'><i class='bi bi-pencil'></i></a> <button onclick='deletedataproduct(" . $row['id'] . ")' class='btn btn-danger'><i class='bi bi-trash'></i></button> </td>";
+        echo "<td> <img class='profile-img' src='../../banner_image/" . $row['banner_image'] . "' alt='image not found'' > </td>";
+        echo "<td>" . $row['banner_title'] . "</td>";
+        echo "<td>" . $row['banner_subtitle'] . "</td>";
+        echo "<td>" . $row['banner_button_text'] . "</td>";
+        echo "<td>" . $row['mob'] . "</td>";
+        echo "<td>" . $row['email'] . "</td>";
+        echo "<td>" . $row['address'] . "</td>";
+        echo " <td><a href='update_site_settings_form.php?id=" . $row['id'] . "' class='btn btn-success'><i class='bi bi-pencil'></i></a> <button onclick='delete_site_settings(" . $row['id'] . ")' class='btn btn-danger'><i class='bi bi-trash'></i></button> </td>";
 
         echo "</tr>";
         $i++;
@@ -100,15 +89,7 @@ $data = $db->getdata('product', $limit, $offset, $where);
   </table>
   <?php
 
-$query = "SELECT product.id,product.stock,product.photo,product.productname,Brand.Brandname AS brandname,product.categoryname,product.price,product.description,product.long_description
-FROM product
- JOIN Brand ON product.brandname = Brand.id
- 
-$where
-";
-
-
-  $res = $db->getdata('product', 0, 0, $where);
+  $res = $db->getdata('site_settings', 0, 0, $where);
   $totol_data = count($res);
   $total_page = ceil($totol_data / $limit);
 

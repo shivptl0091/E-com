@@ -1232,10 +1232,10 @@
             </div>
 
             <!-- Search Bar (Desktop) -->
-            <div id="searchBar" class="hidden mt-4 search-bar animate-fade-in-up">
-                <input type="text" placeholder="Search for products..." />
+            <form id="searchBar" method="GET" class="hidden mt-4 search-bar animate-fade-in-up">
+                <input type="text" name="search" placeholder="Search for products..." />
                 <button>Search</button>
-            </div>
+            </form>
         </div>
     </nav>
     

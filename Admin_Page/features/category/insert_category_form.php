@@ -22,7 +22,7 @@
     </style>
 </head>
 <body>
-   <form class="box p-5" action="insert_category_service.php" method="POST" >
+   <form class="box p-5" action="insert_category_service.php" method="POST" enctype="multipart/form-data">
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Category Nmae</label>
     <input type="text" name="categoryname" class="form-control"  aria-describedby="emailHelp">
@@ -31,6 +31,16 @@
     <label for="exampleInputPassword1" class="form-label">Stayus</label>
     <input type="text" name="Status" class="form-control">
   </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">price</label>
+    <input type="number" name="prics" class="form-control">
+  </div>
+
+
+     <label for="">Upload Image</label>
+    <input type="File" name="image" accept="image">
+
+
   <div class="mb-3 form-check">
     <input type="checkbox" class="form-check-input" >
     <label class="form-check-label" for="exampleCheck1" >Check me out</label>

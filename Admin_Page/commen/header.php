@@ -37,13 +37,13 @@ if (!isset($_SESSION['data'])) {
     <!-- Custom fonts for this template-->
      
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <link href="http://localhost/E-com/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="http://localhost/E-com/Admin_Page/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="http://localhost/E-com/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="http://localhost/E-com/Admin_Page/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 
@@ -56,7 +56,7 @@ if (!isset($_SESSION['data'])) {
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="http://localhost/E-com/home.php">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="http://localhost/E-com/Admin_Page/home.php">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="bi bi-incognito"></i>
                 </div>
@@ -135,12 +135,12 @@ if (!isset($_SESSION['data'])) {
                     <div class="bg-white py-2 collapse-inner rounded">
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Features Pages:</h6>
-                        <a class="collapse-item" href="http://localhost/E-com/features/category/list_category.php">Category page</a>
-                        <a class="collapse-item" href="http://localhost/E-com/features/brand/list_brand.php">Brand Page</a>
-                        <a class="collapse-item" href="http://localhost/E-com/features/user/list_user.php">User Page</a>
-                        <a class="collapse-item" href="http://localhost/E-com/features/product/list_product.php">Product page</a>
-                        <a class="collapse-item" href="http://localhost/E-com/features/size mapping/list_size-mapping.php">Size Mapping page</a>
-                        <a class="collapse-item" href="http://localhost/E-com/features/colors/list_colors.php">Colors page</a>
+                        <a class="collapse-item" href="http://localhost/E-com/Admin_Page/features/category/list_category.php">Category page</a>
+                        <a class="collapse-item" href="http://localhost/E-com/Admin_Page/features/brand/list_brand.php">Brand Page</a>
+                        <a class="collapse-item" href="http://localhost/E-com/Admin_Page/features/user/list_user.php">User Page</a>
+                        <a class="collapse-item" href="http://localhost/E-com/Admin_Page/features/product/list_product.php">Product page</a>
+                        <a class="collapse-item" href="http://localhost/E-com/Admin_Page/features/size mapping/list_size-mapping.php">Size Mapping page</a>
+                        <a class="collapse-item" href="http://localhost/E-com/Admin_Page/features/colors/list_colors.php">Colors page</a>
                     </div>
                 </div>
 
@@ -155,7 +155,7 @@ if (!isset($_SESSION['data'])) {
                       
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Varient Master Pages:</h6>
-                        <a class="collapse-item" href="http://localhost/E-com/features/Varient-Master/list_varient.php"> Varient Master</a>
+                        <a class="collapse-item" href="http://localhost/E-com/Admin_Page/features/Varient-Master/list_varient.php"> Varient Master</a>
                     </div>
                 </div>
             
@@ -170,10 +170,10 @@ if (!isset($_SESSION['data'])) {
                     <div class="bg-white py-2 collapse-inner rounded">
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">location master Pages:</h6>
-                        <a class="collapse-item" href="http://localhost/E-com/features/country/list_country.php">Country Page</a>
-                        <a class="collapse-item" href="http://localhost/E-com/features/state/list_state.php">State Page</a>
-                        <a class="collapse-item" href="http://localhost/E-com/features/city/list_city.php">City Page</a>
-                        <a class="collapse-item" href="http://localhost/E-com/features/pincode/list_pincode.php">Pincode page</a>
+                        <a class="collapse-item" href="http://localhost/E-com/Admin_Page/features/country/list_country.php">Country Page</a>
+                        <a class="collapse-item" href="http://localhost/E-com/Admin_Page/features/state/list_state.php">State Page</a>
+                        <a class="collapse-item" href="http://localhost/E-com/Admin_Page/features/city/list_city.php">City Page</a>
+                        <a class="collapse-item" href="http://localhost/E-com/Admin_Page/features/pincode/list_pincode.php">Pincode page</a>
 
                     </div>
                 </div>
@@ -189,7 +189,7 @@ if (!isset($_SESSION['data'])) {
                     <div class="bg-white py-2 collapse-inner rounded">
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Inventory Mster Pages:</h6>
-                        <a class="collapse-item" href="http://localhost/E-com/features/Inventory-Mster/list_inventory.php">Inventory Mster</a>
+                        <a class="collapse-item" href="http://localhost/E-com/Admin_Page/features/Inventory-Mster/list_inventory.php">Inventory Mster</a>
 
                     </div>
                 </div>
@@ -207,7 +207,23 @@ if (!isset($_SESSION['data'])) {
                     <div class="bg-white py-2 collapse-inner rounded">
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Product media Pages:</h6>
-                        <a class="collapse-item" href="http://localhost/E-com/features/Product-media/list_product_photo.php">Product media</a>
+                        <a class="collapse-item" href="http://localhost/E-com/Admin_Page/features/Product-media/list_product_photo.php">Product media</a>
+
+                    </div>
+                </div>
+
+                <!--end page5 -->
+                  <!-- page5 -->
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages5"
+                    aria-expanded="true" aria-controls="collapsePages5">
+                    <i class="bi bi-box"></i>
+                    <span>Site Settings</span>
+                </a>
+                <div id="collapsePages5" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <div class="collapse-divider"></div>
+                        <h6 class="collapse-header">Site Settings Pages:</h6>
+                        <a class="collapse-item" href="http://localhost/E-com/Admin_Page/features/Site Settings/list_settings.php">Site Settings</a>
 
                     </div>
                 </div>
@@ -425,7 +441,7 @@ if (!isset($_SESSION['data'])) {
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                                 <img class="img-profile rounded-circle"
-                                    src="http://localhost/E-com/img/undraw_profile.svg">
+                                    src="http://localhost/E-com/Admin_Page/img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -443,7 +459,7 @@ if (!isset($_SESSION['data'])) {
                                     Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="http://localhost/E-com/features/login/logout.php" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="http://localhost/E-com/Admin_Page/features/login/logout.php" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>

@@ -3,19 +3,10 @@
 
 require_once "./commen/header.php";
         
-  $limit = 3;
-                if (isset($_GET['page'])) {
-                    $page = $_GET['page'];
-                } else {
-                    $page = 1;
-                }
- 
-                $offset = ($page - 1) * $limit;
-
-  $sql = "SELECT * FROM category"       
-?>
-
-
+ ?>
+  <div class="text-end me-5 mt-5 my-5">
+    <a href="./category.php" class="btn-primary py-2 px-4">Refresh</a>
+</div>
 <!-- ═══════════════════════════════════════════
      HERO BANNER
 ════════════════════════════════════════════ -->
@@ -100,11 +91,23 @@ require_once "./commen/header.php";
 
         <!-- LARGE: Footwear (spans 2 rows on desktop) -->
         <div class="lg:row-span-2">
-            <a href="shop.php?category=footwear" class="cat-card cat-card-large block h-full animate-fade-in-up" style="min-height:460px">
+
+         <?php
+         $where="";
+                if(isset($_GET['search'])){
+                    $search=trim($_GET['search']);
+                    $where  =" WHERE `categoryname` LIKE '%$search%'";
+            }
+
+            $categories_data =  $db->getdata("categories",0,0,$where);
+    
+            foreach ($categories_data as $categories) {
+
+            echo '  <a href="shop.php?category=footwear" class="cat-card cat-card-large block h-full animate-fade-in-up" style="min-height:460px">
                 <span class="cat-card-badge hot">Trending</span>
-                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=700&fit=crop" alt="Footwear">
+                <img src="http://localhost/E-com/Admin_Page/categories_photo/'.$categories['categories_photo'].'" alt="Footwear">
                 <div class="cat-card-body">
-                    <div class="cat-card-title font-display">Footwear</div>
+                    <div class="cat-card-title font-display">'.$categories['categoryname'].'</div>
                     <div class="cat-card-sub">8 Products · Sneakers, Boots & More</div>
                     <div class="cat-card-cta">
                         Shop Now
@@ -115,6 +118,13 @@ require_once "./commen/header.php";
                 </div>
             </a>
         </div>
+
+        ';
+            }
+            ?>
+
+        <?php /*
+         
 
         <!-- Clothing -->
         <a href="shop.php?category=clothing" class="cat-card block animate-fade-in-up delay-100">
@@ -162,8 +172,8 @@ require_once "./commen/header.php";
                 </div>
             </div>
         </a>
-
-    </div>
+           */ ?>
+    <!-- </div> -->
 </section>
 
 
@@ -182,22 +192,42 @@ require_once "./commen/header.php";
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
 
-        <!-- Shoe 1 -->
-        <a href="shop.php" class="group block rounded-xl overflow-hidden shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-xl" style="background:var(--bg-light); border:1px solid transparent" onmouseover="this.style.borderColor='var(--primary-blue)'" onmouseout="this.style.borderColor='transparent'">
-            <div class="overflow-hidden aspect-square relative">
-                <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=400&h=400&fit=crop" alt="Classic White Sneakers" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                <span class="badge badge-new absolute top-3 left-3">New</span>
-            </div>
-            <div class="p-4">
-                <h4 class="font-semibold mb-1">Classic White Sneakers</h4>
-                <div class="rating text-sm mb-2">★★★★★ <span class="text-xs" style="color:var(--text-gray)">(128)</span></div>
-                <div class="flex items-center justify-between">
-                    <span class="font-bold text-lg" style="color:var(--primary-blue)">$89.99</span>
-                    <button class="btn-primary py-1.5 px-3 text-sm" onclick="addToCart(1)">+ Cart</button>
-                </div>
-            </div>
-        </a>
+    <?php
 
+      $where="";
+                if(isset($_GET['search'])){
+                    $search=trim($_GET['search']);
+                    $where  =" WHERE `categoryname` LIKE '%$search%' OR `price` LIKE '%$search%' ";
+            }
+
+            $categories_data =  $db->getdata("categories",0,0,$where);
+    
+            foreach ($categories_data as $categories) {
+
+             echo '  <a href="shop.php" class="group block rounded-xl overflow-hidden shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-xl" style="background:var(--bg-light); border:1px solid transparent" onmouseover="this.style.borderColor=\'var(--primary-blue)\'" onmouseout="this.style.borderColor=\'transparent\'">
+                    <div class="overflow-hidden aspect-square relative">
+                        <img src="http://localhost/E-com/Admin_Page/categories_photo/'.$categories['categories_photo'].'" alt="Classic White Sneakers" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="badge badge-new absolute top-3 left-3">New</span>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="font-semibold mb-1">'.$categories['categoryname'].'</h4>
+                        <div class="flex items-center justify-between">
+                            <span class="font-bold text-lg" style="color:var(--primary-blue)">₹'.$categories['price'].'</span>
+                            <button class="btn-primary py-1.5 px-3 text-sm" onclick="addToCart(1)">+ Cart</button>
+                        </div>
+                    </div>
+                </a>
+                
+                ';
+}
+    //    echo "<prE>";
+    //         print_r($categories_data);
+    //         die();
+    ?>
+     </div>
+</section>
+        <!-- Shoe 1 -->
+<?php /*
         <!-- Shoe 2 -->
         <a href="shop.php" class="group block rounded-xl overflow-hidden shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-xl" style="background:var(--bg-light); border:1px solid transparent" onmouseover="this.style.borderColor='var(--primary-blue)'" onmouseout="this.style.borderColor='transparent'">
             <div class="overflow-hidden aspect-square relative">
@@ -247,9 +277,8 @@ require_once "./commen/header.php";
                 </div>
             </div>
         </a>
-
-    </div>
-</section>
+  */ ?>
+   
 
 
 <!-- ═══════════════════════════════════════════
@@ -286,21 +315,33 @@ require_once "./commen/header.php";
             <a href="shop.php?category=clothing" class="btn-secondary text-sm py-2 px-5">View All →</a>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+             <?php
+   $where="";
+                if(isset($_GET['search'])){
+                    $search=trim($_GET['search']);
+                    $where  =" WHERE `categoryname` LIKE '%$search%' OR `price` LIKE '%$search%' ";
+            }
 
-            <!-- Clothing Card 1 - Horizontal Style -->
-            <div class="flex gap-4 rounded-xl p-4 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg" style="background:var(--bg-light); border:1px solid rgba(100,116,139,0.1)">
-                <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=200&h=200&fit=crop" alt="Summer Dress" class="w-24 h-24 object-cover rounded-lg flex-shrink-0">
+            $categories_data =  $db->getdata("categories",0,0,$where);
+    
+            foreach ($categories_data as $categories) {
+           echo '        <div class="flex gap-4 rounded-xl p-4 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg" style="background:var(--bg-light); border:1px solid rgba(100,116,139,0.1)">
+                <img src="http://localhost/E-com/Admin_Page/categories_photo/'.$categories['categories_photo'].'" alt="Summer Dress" class="w-24 h-24 object-cover rounded-lg flex-shrink-0">
                 <div class="flex-1 min-w-0">
                     <span class="badge badge-sale text-xs mb-2">-30%</span>
-                    <h4 class="font-semibold mb-1 truncate">Elegant Summer Dress</h4>
+                    <h4 class="font-semibold mb-1 truncate">'.$categories['categoryname'].'</h4>
                     <div class="rating text-xs mb-2">★★★★☆ <span style="color:var(--text-gray)">(95)</span></div>
                     <div class="flex items-center gap-2">
-                        <span class="text-sm line-through" style="color:var(--text-gray)">$129.99</span>
-                        <span class="font-bold" style="color:var(--primary-blue)">$90.99</span>
+                        <span class="font-bold" style="color:var(--primary-blue)">₹'.$categories['price'].'</span>
                     </div>
                 </div>
-            </div>
-
+            </div> ';
+            }
+?>
+         
+         
+         <!-- Clothing Card 1 - Horizontal Style -->
+            <?php /*
             <div class="flex gap-4 rounded-xl p-4 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg" style="background:var(--bg-light); border:1px solid rgba(100,116,139,0.1)">
                 <img src="https://images.unsplash.com/photo-1588117305388-c2631a279f82?w=200&h=200&fit=crop" alt="Denim Jacket" class="w-24 h-24 object-cover rounded-lg flex-shrink-0">
                 <div class="flex-1 min-w-0">
@@ -360,7 +401,7 @@ require_once "./commen/header.php";
                     </div>
                 </div>
             </div>
-
+                */ ?>
         </div>
     </div>
 </section>
@@ -382,20 +423,33 @@ require_once "./commen/header.php";
                 <a href="shop.php?category=accessories" class="text-sm font-semibold hover:underline" style="color:var(--primary-blue)">See All →</a>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+             <?php
+             $where="";
+                if(isset($_GET['search'])){
+                    $search=trim($_GET['search']);
+                    $where  =" WHERE `categoryname` LIKE '%$search%' OR `price` LIKE '%$search%' ";
+            }
 
-                <div class="rounded-xl overflow-hidden shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group" style="background:var(--bg-light); border:1px solid rgba(100,116,139,0.08)">
+            $categories_data =  $db->getdata("categories",0,0,$where);
+    
+            foreach ($categories_data as $categories) {
+             echo '    <div class="rounded-xl overflow-hidden shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group" style="background:var(--bg-light); border:1px solid rgba(100,116,139,0.08)">
                     <div class="overflow-hidden" style="height:160px">
-                        <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=300&h=200&fit=crop" alt="Backpack" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <img src="http://localhost/E-com/Admin_Page/categories_photo/'.$categories['categories_photo'].'" alt="Backpack" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <div class="p-3">
                         <span class="badge badge-hot text-xs">Hot</span>
-                        <h4 class="font-semibold mt-1 mb-1 text-sm">Premium Backpack</h4>
+                        <h4 class="font-semibold mt-1 mb-1 text-sm">'.$categories['categoryname'].'</h4>
                         <div class="flex justify-between items-center">
-                            <span class="font-bold" style="color:var(--primary-blue)">$149.99</span>
+                            <span class="font-bold" style="color:var(--primary-blue)">₹'.$categories['price'].'</span>
                             <button class="btn-primary py-1 px-3 text-xs">+ Cart</button>
                         </div>
                     </div>
-                </div>
+                </div> ';
+            }
+?>
+<?php /*
+               
 
                 <div class="rounded-xl overflow-hidden shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group" style="background:var(--bg-light); border:1px solid rgba(100,116,139,0.08)">
                     <div class="overflow-hidden" style="height:160px">
@@ -423,7 +477,8 @@ require_once "./commen/header.php";
                         </div>
                     </div>
                 </div>
-
+*/
+              ?>
                 <!-- View More Tile -->
                 <a href="shop.php?category=accessories" class="rounded-xl flex items-center justify-center transition-all duration-300 hover:-translate-y-2 cursor-pointer border-2 border-dashed" style="height:100%; min-height:200px; border-color:var(--primary-blue); color:var(--primary-blue)">
                     <div class="text-center p-4">
@@ -438,32 +493,42 @@ require_once "./commen/header.php";
 
         <!-- Electronics -->
         <div>
-            <div class="flex justify-between items-end mb-6">
-                <div>
-                    <h2 class="text-2xl font-display font-bold section-title">Electronics</h2>
+          <?php
+                   $where="";
+                if(isset($_GET['search'])){
+                    $search=trim($_GET['search']);
+                    $where  =" WHERE `categoryname` LIKE '%$search%' OR `price` LIKE '%$search%' ";
+            }
+                $product_data =  $db->getdata("product",0,0,$where);
+                
+                foreach ($product_data as $product) {
+                echo ' <div class="flex justify-between items-end mb-6"><div>
+                    <h2 class="text-2xl font-display font-bold section-title">'.$product['categoryname'].'</h2>
                     <p class="mt-5 text-sm" style="color:var(--text-gray)">The latest tech</p>
                 </div>
                 <a href="shop.php?category=electronics" class="text-sm font-semibold hover:underline" style="color:var(--primary-blue)">See All →</a>
             </div>
-
+            
+                    
             <!-- Hero electronic product -->
             <div class="rounded-2xl overflow-hidden shadow-xl relative group cursor-pointer" style="height:380px">
-                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&h=500&fit=crop" alt="Smart Watch" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                <img src="http://localhost/E-com/Admin_Page/photo/'.$product['photo'].'" alt="Smart Watch" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                 <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 60%)"></div>
                 <span class="absolute top-4 left-4 badge badge-sale">-20% Off</span>
                 <div class="absolute bottom-0 left-0 right-0 p-6">
-                    <h3 class="text-2xl font-display font-bold text-white mb-1">Smart Watch Pro</h3>
+                    <h3 class="text-2xl font-display font-bold text-white mb-1">'.$product['categoryname'].'</h3>
                     <div class="rating text-sm mb-3 text-yellow-400">★★★★★ <span class="text-gray-300 text-xs">(567 reviews)</span></div>
                     <div class="flex items-center justify-between">
                         <div>
-                            <span class="text-white text-sm line-through opacity-60">$374.99</span>
-                            <span class="text-white text-2xl font-bold ml-2">$299.99</span>
+                            <span class="text-white text-2xl font-bold ml-2">₹'.$product['price'].'</span>
                         </div>
                         <button class="btn-primary" onclick="addToCart(6)">Add to Cart</button>
                     </div>
                 </div>
             </div>
-
+            ';
+            }
+            ?>  
         </div>
     </div>
 </section>

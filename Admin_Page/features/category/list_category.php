@@ -47,7 +47,9 @@ $data = $db->getdata('categories', $limit, $offset, $where);
   <table class="table table-primary">
     <thead>
       <th>ID</th>
+      <th>Categories Photo</th>
       <th>Category Name</th>
+      <th>price</th>
       <th>Status</th>
       <th>Action</th>
     </thead>
@@ -57,9 +59,11 @@ $data = $db->getdata('categories', $limit, $offset, $where);
       foreach ($data as $row) {
         echo "<tr>";
         echo "<td>" . $i. "</td>";
+        echo "<td> <img class='profile-img' src='../../categories_photo/" . $row['categories_photo'] . "' alt='image not found'' > </td>";
         echo "<td>" . $row['categoryname'] . "</td>";
         echo "<td>" . $row['Status'] . "</td>";
-        echo " <td><a href='update_category_form.php?id=" . $row['id'] . "' class='btn btn-success'><i class='bi bi-pencil'></i></a> <button onclick='deletedata(" . $row['id'] . ")' class='btn btn-danger'><i class='bi bi-trash'></i></button> </td>";
+        echo "<td>" . $row['price'] . "</td>";
+        echo " <td><a href='update_category_form.php?id=" . $row['id'] . "' class='btn btn-success'><i class='bi bi-pencil'></i></a> <button onclick='delete_category(" . $row['id'] . ")' class='btn btn-danger'><i class='bi bi-trash'></i></button> </td>";
 
         echo "</tr>";
         $i++;

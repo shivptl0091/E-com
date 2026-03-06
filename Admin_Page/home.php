@@ -9,7 +9,7 @@ if (!isset($_SESSION['data'])) {
 
 ?>
 <?php
-require_once "./commen/header.php";
+require_once "././commen/header.php";
 ?>
                
                 <!-- Begin Page Content -->

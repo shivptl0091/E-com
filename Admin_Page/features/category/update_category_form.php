@@ -33,7 +33,7 @@ if (isset($_GET['id'])) {
     </style>
 </head>
 <body>
-   <form class="box p-5" action="update_category_service.php" method="POST" >
+   <form class="box p-5" action="update_category_service.php" method="POST" enctype="multipart/form-data">
             <input type="hidden" value="<?php echo $row['id']; ?>" name="id">
 
   <div class="mb-3">
@@ -44,6 +44,18 @@ if (isset($_GET['id'])) {
     <label for="exampleInputPassword1" class="form-label">Stayus</label>
     <input type="text" name="Status" class="form-control" value="<?php echo $row['Status']; ?>">
   </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Price</label>
+    <input type="number" name="price" class="form-control" value="<?php echo $row['price']; ?>">
+  </div>
+
+
+ <label for="">Upload Image</label>
+    <input type="file" name="image" value="">
+    <img src="<?php echo "./categories_photo.php/" . $row['categories_photo']; ?>" />
+    <input type="hidden" name="img_old" value="<?php echo $row['categories_photo']; ?>">
+
+
   <div class="mb-3 form-check">
     <input type="checkbox" class="form-check-input" >
     <label class="form-check-label" for="exampleCheck1" >Check me out</label>

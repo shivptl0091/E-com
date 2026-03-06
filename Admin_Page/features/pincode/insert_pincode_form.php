@@ -88,7 +88,7 @@ $country_data = $db->getdata("country");
         formdata.append("country_name", country_name);
 
         var response = await fetch(
-          "http://localhost/E-com/features/city/get_state.php", {
+          "http://localhost/E-com/Admin_Page/features/city/get_state.php", {
             method: "POST",
             body: formdata,
           }
@@ -120,7 +120,7 @@ $country_data = $db->getdata("country");
     formdata.append("state_id", state_id);
 
     var response = await fetch(
-      "http://localhost/E-com/features/pincode/get_city.php", {
+      "http://localhost/E-com/Admin_Page/features/pincode/get_city.php", {
         method: "POST",
         body: formdata,
       }

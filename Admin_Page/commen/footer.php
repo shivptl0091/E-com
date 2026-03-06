@@ -39,7 +39,7 @@
       </div>
   </div>
   <script>
-      const deletedata = (id) => {
+      const delete_category = (id) => {
 
           let value = confirm("do you want to delete data");
 
@@ -195,19 +195,30 @@
 
           }
       }
+          const delete_site_settings = (id) => {
+
+          let value = confirm("do you want to delete data");
+
+          try {
+              window.location.href = "datele_site_settings.php?id=" + id;
+          } catch (error) {
+              alert("something want wrong ?");
+
+          }
+      }
   </script>
   <!-- Bootstrap core JavaScript-->
-  <script src="http://localhost/E-com/vendor/jquery/jquery.min.js"></script>
-  <script src="http://localhost/E-com/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="http://localhost/E-com/Admin_Page/vendor/jquery/jquery.min.js"></script>
+  <script src="http://localhost/E-com/Admin_Page/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
-  <script src="http://localhost/E-com/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="http://localhost/E-com/Admin_Page/vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="http://localhost/E-com/js/sb-admin-2.min.js"></script>
+  <script src="http://localhost/E-com/Admin_Page/js/sb-admin-2.min.js"></script>
 
   <!-- Page level plugins -->
-  <script src="http://localhost/E-com/vendor/chart.js/Chart.min.js"></script>
+  <script src="http://localhost/E-com/Admin_Page/vendor/chart.js/Chart.min.js"></script>
 
   <!-- Page level custom scripts -->
   <!-- <script src="http://localhost/E-com/js/demo/chart-area-demo.js"></script>

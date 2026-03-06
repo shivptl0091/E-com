@@ -34,7 +34,7 @@
 <body>
   <form class="box p-5" action="insert_brand_service.php" method="POST" enctype="multipart/form-data">
     <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Brand Nmae</label>
+      <label for="exampleInputEmail1" class="form-label">Brand Name</label>
       <input type="text" name="Brandname" class="form-control" aria-describedby="emailHelp">
     </div>
     <div class="mb-3">

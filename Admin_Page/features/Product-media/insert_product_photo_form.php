@@ -27,8 +27,8 @@ $product_data = $db->getdata("product");
       justify-content: center;
       align-items: center;
     }
-    
-      img {
+
+    img {
       height: 100px;
       width: 100px;
       border-radius: 10px;
@@ -63,7 +63,7 @@ $product_data = $db->getdata("product");
       </select>
     </div>
 
-     <label for="">Upload Image</label>
+    <label for="">Upload Image</label>
     <input type="File" name="image" accept="image">
 
     <div class="mb-3 form-check">
@@ -81,7 +81,7 @@ $product_data = $db->getdata("product");
         formdata.append("productname", productname)
 
         var response = await fetch(
-          "http://localhost/E-com/features/Inventory-Mster/get_varient.php", {
+          "http://localhost/E-com/Admin_Page/features/Inventory-Mster/get_varient.php", {
             method: "POST",
             body: formdata,
           }

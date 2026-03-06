@@ -85,7 +85,7 @@ if (isset($_GET['id'])) {
         formdata.append("productname", productname)
 
         var response = await fetch(
-          "http://localhost/E-com/features/Inventory-Mster/get_varient.php", {
+          "http://localhost/E-com/Admin_Page/features/Inventory-Mster/get_varient.php", {
             method: "POST",
             body: formdata,
           }
