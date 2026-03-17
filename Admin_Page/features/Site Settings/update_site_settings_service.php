@@ -8,9 +8,6 @@ if (isset($_POST['submit'])) {
     $banner_title  = $_POST['banner_title'];
     $banner_subtitle = $_POST['banner_subtitle'];
     $banner_button_text = $_POST['banner_button_text'];
-    $mob = $_POST['mob'];
-    $email = $_POST['email'];
-    $address = $_POST['address'];
     
     if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
         $img_old = $_POST['img_old'];
@@ -22,7 +19,7 @@ if (isset($_POST['submit'])) {
 
             unlink("../../banner_image/" . $img_old);
         }
-    $sql = "UPDATE site_settings SET banner_title ='$banner_title' , banner_subtitle = '$banner_subtitle',banner_button_text = '$banner_button_text' ,mob = '$mob',email = '$email' ,address = '$address', banner_image='$photo_name' WHERE id=$id";
+    $sql = "UPDATE site_settings SET banner_title ='$banner_title' , banner_subtitle = '$banner_subtitle',banner_button_text = '$banner_button_text', banner_image='$photo_name' WHERE id=$id";
     $res = $db->execute($sql);
 
 
@@ -33,7 +30,7 @@ if (isset($_POST['submit'])) {
         echo "Something Went Wrong";
     }
 }else{
-     $sql = "UPDATE site_settings SET banner_title ='$banner_title' , banner_subtitle = '$banner_subtitle' , banner_button_text='$banner_button_text',mob = '$mob',email='$email',address = '$address' WHERE id=$id";
+     $sql = "UPDATE site_settings SET banner_title ='$banner_title' , banner_subtitle = '$banner_subtitle' , banner_button_text='$banner_button_text' WHERE id=$id";
     $res = $db->execute($sql);
 
 

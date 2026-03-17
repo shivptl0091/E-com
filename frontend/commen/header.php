@@ -8,7 +8,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PATEL MART - Premium E-Commerce</title>
+    <?php
+                          $footer_settings_data =  $db->getdata("footer_settings",0,0);
+
+                          foreach ($footer_settings_data as $footer_settings) {
+
+                          echo ' <title>'.$footer_settings['web_name'].' - Premium E-Commerce</title>
+';
+                          }
+    ?>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1176,7 +1184,13 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
                         </svg>
                     </div>
-                    <span class="text-2xl font-bold font-display">PATEL MART</span>
+                    <?php
+                     $footer_settings_data =  $db->getdata("footer_settings",0,0);
+                          foreach ($footer_settings_data as $footer_settings) {
+
+                    echo '<span class="text-2xl font-bold font-display">'.$footer_settings['web_name'].'</span>';
+                          }
+                    ?>
                 </div>
 
                 <!-- Desktop Navigation -->

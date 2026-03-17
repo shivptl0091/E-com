@@ -19,10 +19,7 @@ if (isset($_GET['search'])) {
     $where = "WHERE id LIKE '%$search%' OR
      banner_title LIKE '%$search%' OR
       banner_subtitle LIKE '%$search%'OR
-       banner_button_text LIKE '%$search%'OR
-        mob LIKE '%$search%'OR
-         email LIKE '%$search%' OR
-         address LIKE '%$search%' ";
+       banner_button_text LIKE '%$search%'OR ";
   }
 }
 $data = $db->getdata('site_settings', $limit, $offset, $where);
@@ -60,9 +57,6 @@ $data = $db->getdata('site_settings', $limit, $offset, $where);
       <th>Banner Title</th>
       <th>Banner Subtitle</th>
       <th>Banner Button Text</th>
-      <th>Mobile Number</th>
-      <th>Email</th>
-      <th>Address</th>
       <th>Action</th>
     </thead>
     <tbody>
@@ -75,9 +69,6 @@ $data = $db->getdata('site_settings', $limit, $offset, $where);
         echo "<td>" . $row['banner_title'] . "</td>";
         echo "<td>" . $row['banner_subtitle'] . "</td>";
         echo "<td>" . $row['banner_button_text'] . "</td>";
-        echo "<td>" . $row['mob'] . "</td>";
-        echo "<td>" . $row['email'] . "</td>";
-        echo "<td>" . $row['address'] . "</td>";
         echo " <td><a href='update_site_settings_form.php?id=" . $row['id'] . "' class='btn btn-success'><i class='bi bi-pencil'></i></a> <button onclick='delete_site_settings(" . $row['id'] . ")' class='btn btn-danger'><i class='bi bi-trash'></i></button> </td>";
 
         echo "</tr>";

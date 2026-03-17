@@ -4,7 +4,7 @@ $db = new database("ecoms");
 
 if (isset($_GET['id'])) {
   $id = $_GET['id'];
-  $res = $db->getdataByid('site_settings', $id);
+  $res = $db->getdataByid('footer_settings', $id);
   $row = $res[0];
 }
 
@@ -42,25 +42,29 @@ if (isset($_GET['id'])) {
 </head>
 
 <body>
-  <form class="box p-5" action="update_site_settings_service.php" method="POST" enctype="multipart/form-data">
+  <form class="box p-5" action="update_footer_settings_service.php" method="POST" enctype="multipart/form-data">
     <input type="hidden" value="<?php echo $row['id']; ?>" name="id">
 
     <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Banner Title</label>
-      <input type="text" name="banner_title" class="form-control" aria-describedby="emailHelp" value="<?php echo $row['banner_title']; ?>">
+      <label for="exampleInputEmail1" class="form-label">Mobile Number</label>
+      <input type="number" name="mob" max="9999999999" min="9999999999" class="form-control" aria-describedby="emailHelp" value="<?php echo $row['mob']; ?>">
     </div>
     <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Banner Subtitle</label>
-      <input type="text" name="banner_subtitle" class="form-control" value="<?php echo $row['banner_subtitle']; ?>">
+      <label for="exampleInputPassword1" class="form-label">Email</label>
+      <input type="email" name="email" class="form-control" value="<?php echo $row['email']; ?>">
     </div>
     <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Banner Button Text</label>
-      <input type="text" name="banner_button_text" class="form-control" value="<?php echo $row['banner_button_text']; ?>">
+      <label for="exampleInputPassword1" class="form-label">Address</label>
+      <input type="text" name="address" class="form-control" value="<?php echo $row['address']; ?>">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Web Name</label>
+      <input type="text" name="web_name" class="form-control" value="<?php echo $row['web_name']; ?>">
     </div>
     <label for="">Upload Image</label>
     <input type="file" name="image" value="">
-    <img src="<?php echo "./banner_image/" . $row['banner_image']; ?>" />
-    <input type="hidden" name="img_old" value="<?php echo $row['banner_image']; ?>">
+    <img src="<?php echo "./web_logo/" . $row['web_logo']; ?>" />
+    <input type="hidden" name="img_old" value="<?php echo $row['web_logo']; ?>">
 
     <div class="mb-3 form-check">
       <input type="checkbox" class="form-check-input">

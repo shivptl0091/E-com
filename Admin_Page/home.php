@@ -1,15 +1,9 @@
 <?php
-session_start();
-
+require_once "././commen/header.php";
 if (!isset($_SESSION['data'])) {
     header("Location:index.php");
     exit;
 }
-
-
-?>
-<?php
-require_once "././commen/header.php";
 ?>
                
                 <!-- Begin Page Content -->

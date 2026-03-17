@@ -5,26 +5,27 @@ $db = new Database("ecoms");
 
 
 if (isset($_POST['submit'])) {
-    $banner_title = $_POST['banner_title'];
-    $banner_subtitle = $_POST['banner_subtitle'];
-    $banner_button_text = $_POST['banner_button_text'];
+    $mob = $_POST['mob'];
+    $email = $_POST['email'];
+    $address = $_POST['address'];
+    $web_name = $_POST['web_name'];
 
     
     if (isset($_FILES['image'])) {
         $image = $_FILES['image'];
         $image_name = time() . $image['name'];
         $tmp_name = $image['tmp_name'];
-        if (move_uploaded_file($tmp_name, "../../banner_image/" . $image_name)) {
+        if (move_uploaded_file($tmp_name, "../../web_logo/" . $image_name)) {
 
-    $sql = "INSERT INTO site_settings (banner_title,banner_subtitle,banner_button_text,banner_image)
-       VALUES ('$banner_title','$banner_subtitle','$banner_button_text','$image_name')";
+    $sql = "INSERT INTO footer_settings (mob,email,address,web_name,web_logo)
+       VALUES ('$mob','$email','$address','$web_name','$image_name')";
 
     $res = $db->execute($sql);
 
 
     if ($res) {
         echo "<script>alert('data save succesfully');</script>";
-        echo "<script>window.location.href='list_settings.php';</script>";
+        echo "<script>window.location.href='list_footer_settings.php';</script>";
     } else {
         // echo "<script>window.location.href='list_settings.php';</script>";
 

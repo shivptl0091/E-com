@@ -32,10 +32,8 @@ LIMIT $offset,$limit";
 
 
 
-
-
 // 
-$data = $db->get_data_from_query($query);
+$data = $db->getdata('varient', $limit, $offset, $where);
 
 // echo "<pre>";
 // print_r($data);
@@ -109,8 +107,8 @@ $where
 
 
   // 
-  $res = $db->get_data_from_query($query);
 
+  $res = $db->getdata('varient', 0, 0, $where);
   $totol_data = count($res);
   $total_page = ceil($totol_data / $limit);
 

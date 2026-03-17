@@ -19,7 +19,7 @@ if (isset($_GET['search'])) {
     $where = "WHERE id LIKE '%$search%' OR Brandname LIKE '%$search%' OR Status LIKE '%$search%' ";
   }
 }
-$data = $db->getdata('Brand', $limit, $offset, $where);
+$data = $db->getdata('brand', $limit, $offset, $where);
 
 ?>
 
@@ -75,7 +75,7 @@ $data = $db->getdata('Brand', $limit, $offset, $where);
   </table>
   <?php
 
-  $res = $db->getdata('Brand', 0, 0, $where);
+  $res = $db->getdata('brand', 0, 0, $where);
   $totol_data = count($res);
   $total_page = ceil($totol_data / $limit);
 

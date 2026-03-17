@@ -224,6 +224,7 @@ if (!isset($_SESSION['data'])) {
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Site Settings Pages:</h6>
                         <a class="collapse-item" href="http://localhost/E-com/Admin_Page/features/Site Settings/list_settings.php">Site Settings</a>
+                        <a class="collapse-item" href="http://localhost/E-com/Admin_Page/features/Dynamic Footer/list_footer_settings.php">Dynamic Footer</a>
 
                     </div>
                 </div>

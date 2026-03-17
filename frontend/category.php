@@ -101,7 +101,7 @@ require_once "./commen/header.php";
 
             $categories_data =  $db->getdata("categories",0,0,$where);
     
-            foreach ($categories_data as $categories) {
+            foreach ($categories_data as $categories) { 
 
             echo '  <a href="shop.php?category=footwear" class="cat-card cat-card-large block h-full animate-fade-in-up" style="min-height:460px">
                 <span class="cat-card-badge hot">Trending</span>
@@ -217,7 +217,6 @@ require_once "./commen/header.php";
                         </div>
                     </div>
                 </a>
-                
                 ';
 }
     //    echo "<prE>";

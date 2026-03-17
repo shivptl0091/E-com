@@ -3,11 +3,13 @@
 class Database
 {
 
-    private $db_username = "root";
-    private $db_password = "";
+    // private $db_username = "root";
+    // private $db_password = "";
+    // private $host = "localhost";
+
+    private $db_username = "u459015489_ecom";
+    private $db_password = "Shiv@0603";
     private $host = "localhost";
-
-
 
     
     private $conn;
@@ -17,7 +19,7 @@ class Database
 
         try {
 
-            $dsn = "mysql:host={$this->host};dbname={$db_name}";
+            $dsn = "mysql:host={$this->host};dbname=u459015489_ecom";
 
             $this->conn = new PDO($dsn, $this->db_username, $this->db_password);
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -40,7 +42,7 @@ class Database
             $query = "SELECT * FROM `$tablename`  $where";
 
             if ($limit != 0) {
-                $query = "SELECT * FROM `$tablename` $where LIMIT $offset,$limit ";
+                $query = "SELECT * FROM `$tablename`  $where LIMIT $offset,$limit ";
             }
 
             $res = $this->conn->prepare($query);

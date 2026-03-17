@@ -9,7 +9,12 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
                             </svg>
                         </div>
-                        <span class="text-2xl font-bold font-display">Patel Mart</span>
+                          <?php
+                          $footer_settings_data =  $db->getdata("footer_settings",0,0,$where);
+                          foreach ($footer_settings_data as $footer_settings) {
+                       echo' <span class="text-2xl font-bold font-display">'.$footer_settings['web_name'].'</span> ';
+            }
+                        ?>
                     </div>
                     <p style="color: var(--text-gray)" class="mb-4">Your one-stop shop for premium fashion and accessories.</p>
                     <div class="flex gap-4">
@@ -53,31 +58,33 @@
                     <ul class="space-y-3" style="color: var(--text-gray)">
                         <li class="flex items-start gap-2">
                             <?php
-                          $site_settings =  $db->getdata("site_settings");
+                          $footer_settings_data =  $db->getdata("footer_settings",0,0,$where);
+            foreach ($footer_settings_data as $footer_settings) {
                             
                    echo'   
                                 <svg class="w-5 h-5 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                             </svg>
-                            <span>'.$site_settings[0]['address'].'</span>
+                            <span>'.$footer_settings['address'].'</span>
                         </li>
                         <li class="flex items-center gap-2">
                             <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                             </svg>
-                            <span>'.$site_settings[0]['email'].'</span>
+                            <span>'.$footer_settings['email'].'</span>
                         </li>
                         <li class="flex items-center gap-2">
                             <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
                             </svg>
-                            <span>+91 '.$site_settings[0]['mob'].'</span>
+                            <span>'.$footer_settings['mob'].'</span>
                         </li>
                     </ul>
                     </div>
                     </div>
                     ';
+            }
                     ?>
             <!-- Copyright -->
             <div class="border-t pt-8 text-center" style="border-color: rgba(100, 116, 139, 0.1); color: var(--text-gray)">

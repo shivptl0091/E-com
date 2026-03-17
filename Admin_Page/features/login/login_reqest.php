@@ -10,7 +10,7 @@ if (isset($_POST['submit'])) {
     $username  = $_POST['username'];
     $passwords = $_POST['passwords'];
 
-    $where = "WHERE username='$username' AND passwords='$passwords'";
+    $where = " WHERE username='$username' AND passwords='$passwords'";
     $res   = $db->getdata('user', 0, $where);
 
     if (!empty($res)) {
